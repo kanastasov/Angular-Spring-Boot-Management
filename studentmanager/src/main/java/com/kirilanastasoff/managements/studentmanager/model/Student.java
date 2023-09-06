@@ -26,12 +26,14 @@ public class Student implements Serializable {
 	private String imageUrl;
 	@Column(nullable = false, updatable = false)
 	private String studentCode;
+	private String email;
 
 	public Student() {
 		super();
 	}
 
-	public Student(Long id, String name, String studentTitle, String phone, String imageUrl, String studentCode) {
+	public Student(Long id, String name, String studentTitle, String phone, String imageUrl, String studentCode,
+			String email) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,6 +41,15 @@ public class Student implements Serializable {
 		this.phone = phone;
 		this.imageUrl = imageUrl;
 		this.studentCode = studentCode;
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Long getId() {
