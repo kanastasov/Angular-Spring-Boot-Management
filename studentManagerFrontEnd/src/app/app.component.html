@@ -86,8 +86,8 @@
                <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
             </div>
             <div class="modal-footer">
-               <button type="button" id="add-student-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button id="add-student-form" [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
             </div>
             </form>
          </div>

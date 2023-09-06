@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   public students: Student[] = [];
+  public editStudent: Student;
+  public deleteStudent: Student;
 
   constructor(private studentService: StudentService){
 
@@ -53,31 +55,30 @@ export class AppComponent implements OnInit {
   
 
 
-  public onOpenModal(student: Student, mode: string): void{
+  public onOpenModal(student: Student, mode: string): void {
     const container = document.getElementById('main-container')!;
-
     const button = document.createElement('button');
     button.type = 'button';
     button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal')
-
-    if(mode === 'add'){
-      button.setAttribute('data-target', '#addStudentModal')
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'add') {
+      button.setAttribute('data-target', '#addStudentModal');
     }
-    if(mode === 'edit'){
-      button.setAttribute('data-target', '#editStudentModal')
+    if (mode === 'edit') {
+      this.editStudent = student;
+      button.setAttribute('data-target', '#updateStudentModal');
     }
-    if(mode === 'delete'){
-      button.setAttribute('data-target', '#deleteStudentModal')
+    if (mode === 'delete') {
+      this.deleteStudent = student;
+      button.setAttribute('data-target', '#deleteStudentModal');
     }
-
     container.appendChild(button);
     button.click();
-
   }
 
 
-  public onUpdateEmloyee(student: Student): void {
+
+  public onUpdateStudent(student: Student): void {
     this.studentService.updateStudent(student).subscribe(
       (response: Student) => {
         console.log(response);
@@ -89,7 +90,7 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public onDeleteEmloyee(studentId: number): void {
+  public onDeleteStudent(studentId: number): void {
     this.studentService.deleteStudent(studentId).subscribe(
       (response: void) => {
         console.log(response);
